@@ -1,6 +1,6 @@
 # Analise-sentimento
 
-O projeto foi construido em React Native em sua versão mais atual "0.63.2".
+O projeto foi construido em React Native em sua versão mais atual "0.63.2". A instalação seguiu a risca os passos da opção de "React Native CLI Quickstart", descritos em: `https://reactnative.dev/docs/0.60/getting-started`, .
 
 1 - Para iniciar faça o clone do repositório: `git clone https://github.com/lucasspi/analise-sentimento.git`
 
