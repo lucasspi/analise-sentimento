@@ -4,7 +4,7 @@
 ![](https://raw.githubusercontent.com/lucasspi/analise-sentimento/master/src/assets/logo-brand.png)
 
 ## 1.0 - Rodar o Projeto
-O projeto foi construido em React Native em sua versão mais atual "0.63.2". A instalação seguiu a risca os passos da opção de "React Native CLI Quickstart", descritos em: `https://reactnative.dev/docs/0.60/getting-started`. Vamos lá:
+O projeto foi construido em React Native em sua versão mais atual "0.63.2". A instalação seguiu a risca os passos da opção de [React Native CLI Quickstart](https://reactnative.dev/docs/0.60/getting-started). Vamos lá:
 
   - Para iniciar faça o clone do repositório: `git clone https://github.com/lucasspi/analise-sentimento.git`
 
@@ -24,29 +24,30 @@ O projeto foi construido em React Native em sua versão mais atual "0.63.2". A i
 * [@Google-cloud/language](https://www.npmjs.com/package/@google-cloud/language) - utilizado para avaliar os sentimentos
 
 #### 2.2 - Linha de programação
-A solução adotada foi componentizar deixar o código mais limpo e para isso cada módulo foi dividido em um componente. A fim de melhorar a performace e a legibilidade do código.
+A solução adotada foi componentizar para deixar o código para mais limpo. A fim de melhorar a performace e a legibilidade do código.
 
-A linha de código adotada foi a de functional components, mais conhecidos como Hooks. Isso nos permite que usar o state e outros recursos do React sem escrever uma classe, deixando o código menos verboso e mais perfomático.
+A linha de programação que adotei foi a de [Functional Components](https://pt-br.reactjs.org/docs/components-and-props.html), com o [Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html). Isso nos permite que usar o state e outros recursos do React sem escrever uma classe, deixando o código menos verboso e mais perfomático.
 
 #### 2.3 - Sobre as tema e estilos
 
-Sobre o uso de estilos foi tomada a decisão de usar um template de cores, tamanho de fontes e peso de fonte, com intuito de padronizar o estilo em todo o app e facilitar a mudança de tema, caso necessário.
-Com esta solução é necessário mudar apenas um componente (`src/constants/theme.js`) para mudar todas as cores do App, o que nos facilita muito o caminho para futuras otimizações.
+Sobre o uso de estilos decidi usar um tema de cores, tamanho de fontes e peso de fonte, para padronizar o estilo em todo o app e facilitar a mudança de tema, caso necessário.
+Com esta solução é necessário mudar apenas um componente (`src/constants/theme.js`) para mudar todas as cores do App, o que facilita muito o caminho para futuras otimizações.
 
 #### 2.4 Sobre a fonte de dados
 Dei uso a um simples redux que é a unica "fonte de verdade" do App. Para essa implementação usei o Hook `useSelector`, que substitui de forma bem drástica a verbosa implementação do redux no modelo de classes com o connect().
 Nosso redux cobre:
 - A captação do nome do usuário (`USER_NAME`),
 - A lista de tweets (`TWITTER_LIST`)
+- Mostrar o humor do Tweet selecionado (`HUMOR`)
 
 #### 2.5 Constantes e Chaves de Api
-Criei um arquivo no diretório `src/environments/config.js` para concentrar todas as constantes de server, api e chaves secretas. 
+Criei um arquivo no diretório `src/environments/config.js` para concentrar todas as constantes de server, api e chaves secretas.
 Desta forma, caso haja mudança em alguma das constantes é necessário alterar em apenas um arquivo.
 
-Obs: Notem que neste arquivo config.js, na opção "api", está cadastrado um servidor em produção. Para que fosse possível realizar os testes sem muito esforço, coloquei o controller que o aplicativo consome em uma api pessoal que já está rodando no EC2 da aws. No próximo ponto falo sobre este controller.
+Obs: Note que neste arquivo config.js, na opção "api", está cadastrado um servidor em produção. Para que fosse possível realizar os testes sem muito esforço, coloquei o controller que o aplicativo consome em uma api pessoal que já está rodando no EC2 da aws. No próximo ponto falo sobre este controller.
 
 #### 2.6 Consumo de dados
-Quanto ao consumo de dados de API's decidi centralizar no mobile o consumo em apenas uma fonte. Para centralizar criei dois métodos em uma API em NodeJs:
+Quanto ao consumo de dados de API's, decidi centralizar o consumo do mobile em apenas uma fonte. Para centralizar criei dois métodos em uma API em NodeJs:
 
  - AnalyzeSentiment (POST): recebe o texto do tweet e envia para a api do @google-cloud/language e faz a análise do sentimento.
  - Twitter (GET): recebe nos parametros o usuário do twitter que o usuário do app deseja ver e em seguida lista os últimos 20 tweets.
@@ -62,5 +63,5 @@ Para chegar no ponto que está foi demandado cerca de 7 horas de trabalho.
 
 #### 3.2 - Testes
 Realizei testes manuais:
-- Tela Intro: Nome com muitos caracteres, nome sem nenhum caracter. Testes de design (se com o teclado a experiencia do usuário é afetada);
-- Tela de Listar Tweets: Usuário inserido inexistente, usuário inserido não tem tweets, usuário inserido com muitos tweets. 
+- Tela Intro: Nome com muitos caracteres, nome sem nenhum caracter. Testes de design (se com o teclado a experiencia do usuário é afetada), testei em dispositivos maiores e menores;
+- Tela de Listar Tweets: Usuário inserido inexistente, usuário inserido não tem tweets, usuário inserido com muitos tweets;

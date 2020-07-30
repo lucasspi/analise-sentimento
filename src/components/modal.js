@@ -6,12 +6,14 @@ import {
   Text,
   Dimensions
 } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import Theme from '../constants/theme';
 const { COLOR, WEIGHT, FONT } = Theme;
-const { width, height } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
-export default function Modal({close, btnText, humor}) {
+export default function Modal({close, btnText}) {
+	const humor = useSelector(state => state.humor)
 	return (
 		<View style={styles.component}>
 			<View style={styles.wholeContent}>
@@ -20,7 +22,7 @@ export default function Modal({close, btnText, humor}) {
 				<TouchableOpacity
 					onPress={close}
 					style={styles.mainBtn}>
-					<Text style={styles.mainBtnLabel}>{btnText}</Text>
+					<Text style={styles.mainBtnLabel}>OK</Text>
 				</TouchableOpacity>
 			</View>
 		</View>

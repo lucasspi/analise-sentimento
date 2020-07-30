@@ -11,7 +11,7 @@ import {
   Alert,
   Image
 } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Theme from '../constants/theme';
 import Modal from './modal';
 const { COLOR, WEIGHT, FONT } = Theme;
@@ -23,16 +23,16 @@ const server = getApi('api');
 moment.locale('pt-BR');
 
 export default function tweetsList() {
+	const dispatch = useDispatch()
   const [loading, setLoading] = useState(false)
   const [search, setSearch] = useState('')
   const [tweetText, setTweetText] = useState('')
-  const [tweets, setTweets] = useState([])
   const [modal, setModal] = useState(false)
   const [humor, setHumor] = useState('')
   const [errorSearch, setErrorSearch] = useState(null)
   const [status, setStatus] = useState(null)
 	
-	const userName = useSelector(state => state.name);
+	const state = useSelector(state => state);
 	
   async function searchFeelings(text) {
 		console.log('text', text);
@@ -47,9 +47,8 @@ export default function tweetsList() {
       })
     });
     response = await response.json();
-		
     let humor = response.score <= -0.25 ? "😔" : response.score >= 0.25 ? "🙂" : "😐"
-		setHumor(humor)
+		dispatch({type: 'HUMOR', humor })
 		setModal(true)
     setLoading(false);
   }
@@ -58,19 +57,18 @@ export default function tweetsList() {
 		// O CONTROLLER DESTA REQUISIÇÃO ESTÁ DEMONSTRADO NO DIRETÓRIO `src/api/index.js` line 27
     let response = await fetch(server.url + `auth/twitter/${search}`);
     response = await response.json();
-
+		console.log('response', response);
     if (response.error) {
-      setLoading(false);
-			setTweets([])
 			setStatus("Ops! Não existe nenhuma conta com o nome inserido.")
+			dispatch({type: 'TWITTER_LIST', list: [] })
     }else if(response.tweets && response.tweets.length === 0){
 			setStatus("Ops! A conta inserida não contém nenhum Tweet publico.")
-			setTweets([])
+			dispatch({type: 'TWITTER_LIST', list: [] })
 		} else {
-      setTweets(response.tweets);
-      setLoading(false);
+			dispatch({type: 'TWITTER_LIST', list: response.tweets })
 			setStatus(null)
     }
+      setLoading(false);
   }
 
   function secondStepAction(){
@@ -88,7 +86,7 @@ export default function tweetsList() {
 			<View style={styles.containerTopBar}>
 				<View style={styles.topContainer}>
 					<View style={styles.flex}>
-						<Text style={styles.nameTitle}>Olá, {userName}!</Text>
+						<Text style={styles.nameTitle}>Olá, {state.name}!</Text>
 					</View>
 					<View style={styles.contentImg}>
 						<Image 
@@ -120,7 +118,7 @@ export default function tweetsList() {
 					</View>
 				{ errorSearch ?  <Text style={styles.labelError}>{errorSearch}</Text> : null }
 				</View>
-				{tweets && tweets.length > 0 && tweets.map((item, index) => 
+				{state && state.list.length > 0 && state.list.map((item, index) => 
 					<TouchableOpacity 
 						key={index} 
 						onPress={() => {setTweetText(item.text); searchFeelings(item.text)}}
@@ -153,8 +151,6 @@ export default function tweetsList() {
 			{modal ? 
 				<Modal
 					close={() => setModal(false)}
-					btnText={"OK"}
-					humor={humor}
 				/> 
 			: null}
 		</View>
