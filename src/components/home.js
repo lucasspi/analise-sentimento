@@ -1,3 +1,4 @@
+// LIBS IMPORTS
 import React, { useState, useRef } from 'react';
 import {
   StyleSheet,
@@ -5,12 +6,12 @@ import {
   StatusBar,
   Animated,
 } from 'react-native';
-
+// LOCAL IMPORTS
 import Theme from '../constants/theme';
-const { COLOR } = Theme;
-
 import Intro from './intro';
 import TweetsList from './tweetsList';
+// CONSTS SETUP
+const { COLOR } = Theme;
 
 export default function home() {
 

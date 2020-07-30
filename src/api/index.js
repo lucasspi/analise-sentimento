@@ -37,7 +37,6 @@ let controller = {
         const params = {screen_name: req.params.nameScreen}; // req.params.nameScreen proveniente dos paramentros passados na api
         client.get('statuses/user_timeline', params, function(error, tweets, response) {
             if (!error) {
-                console.log(tweets);
                 res.json({error: false, tweets})
             }else{
                 res.json({error: true, message: "Nenhum tweet encontrado"})

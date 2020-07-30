@@ -1,3 +1,4 @@
+// LIBS IMPORTS
 import React, { useState } from 'react';
 import {
   StyleSheet,
@@ -11,9 +12,9 @@ import {
   Platform
 } from 'react-native';
 import { useDispatch } from 'react-redux';
-
+// LOCAL IMPORTS
 import Theme from '../constants/theme';
-
+// CONSTS SETUP
 const { COLOR, FONT, WEIGHT } = Theme;
 
 export default function intro({close}) {

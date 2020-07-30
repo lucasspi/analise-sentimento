@@ -1,3 +1,4 @@
+// LIBS IMPORTS
 import React, { useEffect, useState, useRef } from 'react';
 import {
   StyleSheet,
@@ -7,18 +8,16 @@ import {
   View,
   Text,
   TextInput,
-  Animated,
-  Alert,
   Image
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import moment from 'moment/min/moment-with-locales'
+// LOCAL IMPORTS
 import Theme from '../constants/theme';
 import Modal from './modal';
-const { COLOR, WEIGHT, FONT } = Theme;
-
-import moment from 'moment/min/moment-with-locales'
 import { getApi } from '../environments/config'
-
+// CONSTS SETUP
+const { COLOR, WEIGHT, FONT } = Theme;
 const server = getApi('api');
 moment.locale('pt-BR');
 
@@ -35,7 +34,6 @@ export default function tweetsList() {
 	const state = useSelector(state => state);
 	
   async function searchFeelings(text) {
-		console.log('text', text);
 		// O CONTROLLER DESTA REQUISIÇÃO ESTÁ DEMONSTRADO NO DIRETÓRIO `src/api/index.js` line 6
     let response = await fetch(server.url + `auth/analyzeSentiment`, {
       method: 'POST',
@@ -57,7 +55,6 @@ export default function tweetsList() {
 		// O CONTROLLER DESTA REQUISIÇÃO ESTÁ DEMONSTRADO NO DIRETÓRIO `src/api/index.js` line 27
     let response = await fetch(server.url + `auth/twitter/${search}`);
     response = await response.json();
-		console.log('response', response);
     if (response.error) {
 			setStatus("Ops! Não existe nenhuma conta com o nome inserido.")
 			dispatch({type: 'TWITTER_LIST', list: [] })

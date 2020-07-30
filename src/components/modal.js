@@ -1,3 +1,4 @@
+// LIBS IMPORTS
 import React from 'react'
 import {
   StyleSheet,
@@ -7,8 +8,9 @@ import {
   Dimensions
 } from 'react-native';
 import { useSelector } from 'react-redux';
-
+// LOCAL IMPORTS
 import Theme from '../constants/theme';
+// CONSTS SETUP
 const { COLOR, WEIGHT, FONT } = Theme;
 const { height } = Dimensions.get('window');
 
