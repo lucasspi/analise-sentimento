@@ -5,7 +5,7 @@ let controller = {
 
     async analyzeSentiment(req, res) {
         // INFORMAÇÕES DE SETUP PROVIDAS DA PAGINA DE API DO GOOGLE CLOUD LANGUAGE
-        const projectId = 'rotagourmet-221014'
+        const projectId = '***********'
         const keyFilename = './google-credentials.json'
         const language = require('@google-cloud/language');
 
