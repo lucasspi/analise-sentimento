@@ -1,3 +1,5 @@
+const Twitter = require('twitter');
+
 import { getApi } from '../environments/config'
 const twitter = getApi('twitter');
 

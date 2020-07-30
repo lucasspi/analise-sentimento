@@ -6,7 +6,7 @@ const envs = {
     },
     api: {
         //  url: 'http://localhost:3000/', //LOCAL
-        url: "http://35.171.168.244:3000/", //API
+        url: "http://35.171.168.244:3000/", //PRODUÇÃO
     }
 }
 
