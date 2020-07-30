@@ -1,13 +1,12 @@
 const envs = {
-    maps: {
-        api: 'AIzaSyB0YH1mH4F_sro1dYmsxwGDhTngl3pnB6A'
-    },
     twitter: {
-        api: 'AIzaSyB0YH1mH4F_sro1dYmsxwGDhTngl3pnB6A'
+        consumer_key: '3I94HsC312pczsOHJA44n4lWq',
+        consumer_secret: 'QYhZwo0lLCYiwxIqsCz06bZ6QSKjaJAufCluTIMqqqcyDZKhaK',
+        bearer_token: 'AAAAAAAAAAAAAAAAAAAAAOiRGQEAAAAAcz7hMYLwXDV%2FdKXpoPP7HG%2FJKew%3DTBMPYnXyY9V7807lgw86TSHpzZj3aygi9GetcMi30oFZCaFoH5'
     },
     api: {
-         url: 'http://localhost:3000/', //LOCAL
-        // url: "http://35.171.168.244:3000/", //API
+        //  url: 'http://localhost:3000/', //LOCAL
+        url: "http://35.171.168.244:3000/", //API
     }
 }
 
