@@ -21,7 +21,8 @@ const { COLOR, WEIGHT, FONT } = Theme;
 const server = getApi('api');
 moment.locale('pt-BR');
 
-export default function tweetsList() {
+const tweetsList = () => {
+
 	const dispatch = useDispatch()
   const [loading, setLoading] = useState(false)
   const [search, setSearch] = useState('')
@@ -33,7 +34,7 @@ export default function tweetsList() {
 	
 	const state = useSelector(state => state);
 	
-  async function searchFeelings(text) {
+  const searchFeelings = async (text) => {
 		// O CONTROLLER DESTA REQUISIÇÃO ESTÁ DEMONSTRADO NO DIRETÓRIO `src/api/index.js` line 6
     let response = await fetch(server.url + `auth/analyzeSentiment`, {
       method: 'POST',
@@ -51,7 +52,7 @@ export default function tweetsList() {
     setLoading(false);
   }
 
-  async function fetchTwitterData() {
+  const fetchTwitterData = () => {
 		// O CONTROLLER DESTA REQUISIÇÃO ESTÁ DEMONSTRADO NO DIRETÓRIO `src/api/index.js` line 27
     let response = await fetch(server.url + `auth/twitter/${search}`);
     response = await response.json();
@@ -68,7 +69,7 @@ export default function tweetsList() {
       setLoading(false);
   }
 
-  function secondStepAction(){
+  const secondStepAction = () =>{
     setLoading(true);
     if(search){
       fetchTwitterData()
@@ -302,3 +303,5 @@ const styles = StyleSheet.create({
     flex: 1
   },
 });
+
+export default tweetsList;

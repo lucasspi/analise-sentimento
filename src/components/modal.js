@@ -14,7 +14,7 @@ import Theme from '../constants/theme';
 const { COLOR, WEIGHT, FONT } = Theme;
 const { height } = Dimensions.get('window');
 
-export default function Modal({close, btnText}) {
+const modal = ({close, btnText}) => {
 	const humor = useSelector(state => state.humor)
 	return (
 		<View style={styles.component}>
@@ -76,3 +76,5 @@ const styles = StyleSheet.create({
 		borderRadius: 5
 	}
 });
+
+export default modal;

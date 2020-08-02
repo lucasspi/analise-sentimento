@@ -13,7 +13,7 @@ import TweetsList from './tweetsList';
 // CONSTS SETUP
 const { COLOR } = Theme;
 
-export default function home() {
+const home = () => {
 
   const firstStepFade = useRef(new Animated.Value(1)).current
   const secondStepFade = useRef(new Animated.Value(0)).current
@@ -21,7 +21,7 @@ export default function home() {
   const [firstStepControll, setFirstStepControll] = useState(true)
   const [secondStepControll, setSecondStepControll] = useState(false)
 
-  function fadeOutFirstStep(){
+  const fadeOutFirstStep = () => {
     Animated.timing(
       firstStepFade,
       {
@@ -32,7 +32,7 @@ export default function home() {
     ).start();
 	}
 
-  function fadeInSecondStep(){
+  const fadeInSecondStep = () => {
 		Animated.timing(
       secondStepFade,
       {
@@ -43,7 +43,7 @@ export default function home() {
     ).start();
 	}
 	
-  function firstStepAction(){
+  const firstStepAction = () => {
 		fadeOutFirstStep();
 		setTimeout(() => {
 			setFirstStepControll(false);
@@ -84,3 +84,4 @@ const styles = StyleSheet.create({
     flex: 1
   },
 });
+export default home;

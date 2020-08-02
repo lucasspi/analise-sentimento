@@ -17,14 +17,14 @@ import Theme from '../constants/theme';
 // CONSTS SETUP
 const { COLOR, FONT, WEIGHT } = Theme;
 
-export default function intro({close}) {
+const intro = ({close}) => {
 
   const [name, setName] = useState('')
   const [errorName, setErrorName] = useState(null)
   const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
 
-	function firstStepAction(){
+	const firstStepAction = () => {
     setLoading(true);
     if (name) {
       dispatch({ type: 'USER_NAME', name: name })
@@ -62,9 +62,8 @@ export default function intro({close}) {
 				{loading ? <ActivityIndicator size="small" color="#FFFFFF"/> : <Text style={styles.mainBtnLabel}>AVANÇAR</Text>}
 			</TouchableOpacity>
     </KeyboardAvoidingView>
-	)
-}
-
+	);
+};
 
 const styles = StyleSheet.create({
 	logo: {
@@ -117,3 +116,5 @@ const styles = StyleSheet.create({
     borderRadius: 6
   }
 });
+
+export default intro;
